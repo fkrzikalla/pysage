@@ -9,6 +9,8 @@ class BOUNDARY_CONDITION(Enum):
     ROLLER = 5 
     NOSET = -1
     
+    #
+    
 class Boundary_Condition:
     
     '''
