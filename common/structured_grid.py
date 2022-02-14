@@ -83,6 +83,17 @@ class StructuredGrid( StructuredBase ):
         return np.array(ret).reshape( (self.nodes_per_layer,3) )
     
 
+    def get_all_local_coordinates( self ):
+        
+        #fixme use list comprehensions 
+        all_data =[]
+        for n in range(0, self.nsurfaces):
+            xyz = list(self.get_local_coordinates_vectors( n ).flatten())
+            all_data.extend( xyz )
+        
+        return np.array( all_data )
+    
+    
     def get_node_depths_from_top( self ):
         
         '''

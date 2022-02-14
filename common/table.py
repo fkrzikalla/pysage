@@ -34,6 +34,11 @@ class Table:
     def  __str__(self):
         return self.__repr__();
     
+    def __getitem__( self, index ): 
+        return [self._x[index], self._y[index]]
+    
+    def __len__(self): return len( self._x) 
+    
     @property 
     def x_values(self ):
         return self._x
@@ -47,15 +52,19 @@ class Table:
         return len(self._x) 
     
     @property
+    def size(self):
+        return len(self._x) 
+    
+    @property
     def name(self)->str:
         return self._name
     
     @property
-    def xmax(self)->str:
+    def xmax(self)->float:
         return max(self._x)
     
     @property
-    def xmin(self)->str:
+    def xmin(self)->float:
         return min(self._x)
     
     @property 
@@ -123,9 +132,7 @@ class Table:
         self._y = [ value[1] for value in z ]
         
         
-    def resample( npoints: int ):
-        print('resampling')
-        
+ 
         
     def set_data( self, data ):
         self._x = []
@@ -257,13 +264,17 @@ class Table:
         return [ self.get_interpolated_value(value) for value in x ]
 
     
-    def resample( self, xmin:float, xmax:float, npoints:int ):
+    def resample( self,  npoints:int, xlimits = None ):
     
-        delta = (xmax - xmin) / (npoints - 1);
-        xvals = [ xmin + n * delta for n in range(0,npoints) ]
+        x1 = xlimits[0] if xlimits is not None else min(self.x_values)
+        x2 = xlimits[1] if xlimits is not None else max(self.x_values)
+        
+        delta = (x2 - x1) / (npoints - 1);
+        xvals = [ x1 + n * delta for n in range(0,npoints) ]
         yvals = self.get_interpolated_values( xvals );
         
         self._x = xvals
         self._y = yvals 
+     
         
         
