@@ -1,15 +1,27 @@
 from enum import Enum
 
 class BOUNDARY_CONDITION(Enum):
-    FIXED = 0
+    FIXED_ALL = 0
     DISPLACEMENT = 1
     STRAIN = 2
     FREE = 3 
     EDGELOAD = 4 
-    ROLLER = 5 
+    ROLLER = 5
+    FIXED_HORIZONTAL  = 6
+    FIXED_VERTICAL    = 7
+    
     NOSET = -1
     
-    #
+    
+    
+class BOUNDARY_FACE(Enum):
+    EASTWEST = 0
+    NORTHSOUTH = 1
+    BASE = 2
+    TOP = 3 
+    NOSET = -1
+    
+    
     
 class Boundary_Condition:
     
@@ -31,35 +43,57 @@ class Boundary_Condition:
     btype: Constant defined in the Enum BOUNDARY_CONDITION
     '''
     
-    def __init__(self, direction:int, btype:BOUNDARY_CONDITION ):
-        self.dir  = direction
+    def __init__(self, face:BOUNDARY_FACE, btype:BOUNDARY_CONDITION ):
         self.type = btype
+        self.face = face 
         
     def __repr__(self):
         return self.__str__()
     
     def __str__(self):
-        return 'dir: {} type: {}'.format( self.dir, self.type )
-             
+        return 'type: {}  face:{}'.format( self.type, self.face )
+            
+        
+class FixedHorizontal( Boundary_Condition ):
+    
+    def __init__( self,face:BOUNDARY_FACE ):
+        super().__init__( face,BOUNDARY_CONDITION.FIXED_HORIZONTAL )
+            
+class FixedVertical( Boundary_Condition ):
+    
+    def __init__( self,face:BOUNDARY_FACE ):
+        super().__init__( face,BOUNDARY_CONDITION.FIXED_VERTICAL )
+        
+class FixedAll( Boundary_Condition ):
+    
+    def __init__( self,face:BOUNDARY_FACE ):
+        super().__init__( face,BOUNDARY_CONDITION.FIXED_ALL )
+
+        
+class NoSet( Boundary_Condition ):
+    def __init__( self,face:BOUNDARY_FACE ):
+        super().__init__( face,BOUNDARY_CONDITION.NOSET )
+        
+''' 
 class FixedBoundary( Boundary_Condition ):
     
-    def __init__( self,direction:int ):
+    def __init__( self,direction:BOUNDARY_FACE ):
         super().__init__( direction,BOUNDARY_CONDITION.FIXED )
         
 class FreeBoundary( Boundary_Condition ):
     
-    def __init__( self,direction:int):
+    def __init__( self,direction:BOUNDARY_FACE):
         super().__init__( direction,BOUNDARY_CONDITION.FREE )
         
 class RollerBoundary( Boundary_Condition ):
     
-    def __init__( self,direction:int ):
+    def __init__( self,direction:BOUNDARY_FACE ):
         super().__init__( direction,BOUNDARY_CONDITION.ROLLER )
      
     
 class StrainBoundary( Boundary_Condition ):
     
-    def __init__( self,direction:int, strain:float ):
+    def __init__( self,direction:BOUNDARY_FACE, strain:float ):
         super().__init__( direction,BOUNDARY_CONDITION.STRAIN )
         self.strain = strain 
         
@@ -72,7 +106,7 @@ class StrainBoundary( Boundary_Condition ):
     
 class DisplacementBoundary( Boundary_Condition ):
     
-    def __init__( self,direction:int, displacement:float ):
+    def __init__( self,direction:BOUNDARY_FACE, displacement:float ):
         super().__init__( direction,BOUNDARY_CONDITION.DISPLACEMENT )
         self.displacement = displacement 
         
@@ -82,6 +116,8 @@ class DisplacementBoundary( Boundary_Condition ):
     def __str__(self):
         s = super().__str__() + ' displacement: {}'.format(self.displacement)
         return s
+    
+'''
     
         
         

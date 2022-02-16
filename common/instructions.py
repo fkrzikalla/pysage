@@ -61,6 +61,8 @@ class VisageSimulationOptions:
         self.multi_step = True 
         self.gravity = True 
         self.use_gid = False
+        self.dummy=False 
+        self.include_files = [] 
         
         self.array_data = {} 
         self.boundary_conditions = {}
@@ -199,6 +201,15 @@ class VisageSimulationOptions:
         hashes["kdimension"]= cells[2]
         hashes["ordering"]  = "gpp"
         self.set_command("STRUCTUREDGRID", "", hashes);      
+        
+        #this is needed 
+        #cells = self.geometry.element_count
+        nCells = cells[0]*cells[1]*cells[2]
+        nNodes = (1+cells[0])*(1+cells[1])*(1+cells[2])
+        self.set_instruction("HEADER", "Nelements", str(nCells));
+        self.set_instruction("HEADER", "Nnodes", str(nNodes));
+        self.set_instruction("HEADER", "Nmaterials", str(nCells));
+        
             
     def configure_default_restart( self):
         hashedValues = {}
@@ -268,12 +279,13 @@ class VisageSimulationOptions:
 
         hashedValues["Swriterestart"]= "1"
         hashedValues["Nwrite_number"]= current_step;
-        hashedValues["Sreadrestart"] = " 1 " if self.step > 0 else " 0 ";
+        hashedValues["Sreadrestart"] = " 0 " if self.step ==0 else " 1 ";
         hashedValues["Nread_number"] = str(prev_step) if self.step > 0 else " 0 ";
         hashedValues["Suse_hdf5"]= "0"
         hashedValues["writerestart_file"]= self.model_name
 
         if self.step <= 0: self.commands.pop("LOADSTEP") 
+            
         else: self.set_command("LOADSTEP", " 1 ");
             
         if self.step >= 1:
@@ -284,7 +296,32 @@ class VisageSimulationOptions:
             hashedValues["szerotime"] = "1";
 
         self.set_command("RESTART", "", hashedValues);
+        
+            
     
+    def config_super_fast_run( options ):
+        print("This is a fast deck ")
+        options.set_instruction( "HEADER", "Nquickcalculation", "1" );
+        options.set_instruction( "HEADER", "Niterations", "1" );
+        options.set_instruction( "HEADER", "Nsub_increments", "1" );
+        
+        
+    def config_solver( options ):
+        if options.failure_mode == FAILURE_MODE.ELASTIC: 
+            print('auto-config solver enabled for elastic runs')
+            options.set_instruction( "HEADER", "Nquickcalculation", 1 );
+            options.set_instruction( "HEADER", "Niterations", 1 );
+            options.set_instruction( "HEADER", "Nsub_increments", 1 );
+        else:
+            print('auto-config solver enabled for plastic runs')
+            #allow a max 5% of the gaussian points above tolerance 
+            n_nodes = 1 + (int)(0.05 * 8 * geometry.num_nodes);
+            options.set_instruction( "HEADER", "nyield_gp_number", str( n_nodes ) );
+            options.set_instruction( "HEADER", "Nquickcalculation", str( 15 ) );
+            options.set_instruction( "HEADER", "Niterations", str( 15 ) );
+            options.set_instruction( "HEADER", "vyieldtolerance", str( 250.0 ) );
+        
+       
     
     def update( self ):
         
@@ -297,11 +334,24 @@ class VisageSimulationOptions:
         #failure mode 
         if self.failure_mode == FAILURE_MODE.ELASTIC: 
             self.set_command("ELASTIC");
+            self.set_instruction( "RESULTS", "ele_tot_pl_strain", '0' );
+            self.set_instruction( "HEADER", "Nsub_increments", '1' );
+
         else:
             self.commands.pop("ELASTIC")
+            self.set_instruction( "RESULTS", "ele_tot_pl_strain", '1' );
         
         #restart 
         self.configure_multistep_restart()
+        #self.set_instruction('RESTART',"Sreadrestart", 0 );
+        
+        
+        #solver 
+        self.config_solver(  )
+        
+        #quick or dummy run ? 
+        if self.dummy == True: self.config_super_fast_run()
+        
         
         #dates 
         year = str(1900 + self.step);
@@ -310,18 +360,16 @@ class VisageSimulationOptions:
     
         #grid with new nodes for instance 
         self.configure_structured_grid()
-                   
-        #this is needed 
-        cells = self.geometry.element_count
-        nCells = cells[0]*cells[1]*cells[2]
-        nNodes = (1+cells[0])*(1+cells[1])*(1+cells[2])
-        self.set_instruction("HEADER", "Nelements", str(nCells));
-        self.set_instruction("HEADER", "Nnodes", str(nNodes));
-        #assuming one material per cell. Even if it is repeated.
-        self.set_instruction("HEADER", "Nmaterials", str(nCells));
-        
+                          
         #model name
         self.set_command('MODELNAME', str(self.model_name)) 
+        
+        if self.use_tables == True and 'dvt_table_index' in self.array_data and len(self.tables) > 0 : 
+            self.set_instruction( "RESULTS", "ele_dvt_variation", "1" );
+            self.set_instruction( "HEADER", "ndvttables", str( len(self.tables) ))
+        else:
+            self.set_instruction( "RESULTS", "ele_dvt_variation", "0" );
+            self.set_instruction( "HEADER", "ndvttables", "0" );
                                     
     
     def to_string(self):

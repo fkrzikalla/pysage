@@ -4,14 +4,33 @@ class Table:
         
     '''
     The class represent a columnar array of pairs (x,y) such a a discrete function.
-    Visage uses this dataset as dvt tables. 
-    
-    The calss provides the functionality to interpolate values between those provided 
-    as part of the data during construction and resampling while preserving the shape
-    
+    Visage uses this dataset as dvt tables.  
+    The class also provides the functionality to interpolate and resample or resize the table
     '''
     def __init__(self, **args):
        
+        '''
+        Args: A dictionary containing one or more of the following parameters:
+        
+            name: A string identifier for the table.
+            
+            dependent: a name (string identifier) for th dependent variable, for instance 'Permeability'.
+            
+            independent: identifier for the independent variable y = f(x)
+            Here x is the independent variable (for instance Porosity) and y is the dependent variable.
+            
+            data: A dictionary or a list of tuples as:
+            
+            data = { x:[1,2,3,4], y: [1,1,1,2] }.
+            
+            data = {'Porosity':[1,2,3,4], 'Permeability': [1,1,1,2]}.
+            
+            data = [(x1,y1),(x2,y2),....(xn,yn].
+            
+        Returns:
+            An instance of the Table class.
+        
+        '''
         self._name = args['name'] if 'name' in args  else 'default'
         self._independent = args['independent'] if 'independent' in args  else 'x'
         self._dependent = args['dependent'] if 'dependent' in args  else 'y'
@@ -41,22 +60,27 @@ class Table:
     
     @property 
     def x_values(self ):
+        '''Returns the x values. '''
         return self._x
     
     @property 
     def y_values(self ):
+        '''Returns the y values.'''
         return self._y
     
     @property
     def count(self):
+        '''Returns the number of points (x,y).'''
         return len(self._x) 
     
     @property
     def size(self):
+        '''Returns the number of x values.'''
         return len(self._x) 
     
     @property
     def name(self)->str:
+        '''The name of the table'''
         return self._name
     
     @property
@@ -110,7 +134,7 @@ class Table:
         return Table( args )
          
     def copy( self ):
-    
+        '''Returns a copy of the table.'''
         #fix style  
         t = Table();
         t.name = self._name
@@ -121,6 +145,7 @@ class Table:
         
     #this is inefficient 
     def add_point(self, x, y ):
+        '''Add one arbitrary point (x,y) to the dataset. The point is added in ascending order based on the x value.'''
         xvals = self.x
         yvals = self.y
         
@@ -135,6 +160,7 @@ class Table:
  
         
     def set_data( self, data ):
+        '''Sets/repaces the stored data. The data is sorted according to the x values.'''
         self._x = []
         self._y = [] 
 
@@ -206,10 +232,7 @@ class Table:
             
             
     def get_interpolated_value( self, x:float)->float:
-        '''
-        returns the y value ( y = f(x) ) for the x value passed as
-        argument
-        '''
+        '''Returns the y value ( y = f(x) ) for the x value passed as argument.'''
         #helpers 
         
         #this splits an interval as part of binary search 
@@ -260,12 +283,20 @@ class Table:
             return get_pair_interpolate(x, k1, k2);
             
     def get_interpolated_values( self, x:list)->list:
+        '''Returns a list of values [ t =f(x1), f(x2,...] for the x values passed as a list in the argument.
         
+        .. code:: python
+        
+           x= [item for item in list ]
+        
+        '''
         return [ self.get_interpolated_value(value) for value in x ]
 
     
     def resample( self,  npoints:int, xlimits = None ):
-    
+        '''Resamples the table to contain a number of npoints. These are equialy-space and correspond to the interpolation 
+        between the initial points.'''
+        
         x1 = xlimits[0] if xlimits is not None else min(self.x_values)
         x2 = xlimits[1] if xlimits is not None else max(self.x_values)
         
