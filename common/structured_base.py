@@ -4,10 +4,14 @@ import numpy as np
 from .coordinate_map import CoordinateMapping3D as CoordinateMapping3D 
 
 class StructuredBase:
+    '''
+    Base class for structured geometric data such as regular grids and regulat surfaces
+    '''
     
     DIMS = 3 
     
     def __init__( self, ncols:int, nrows:int, nlayers:int, extent:'np.array2d', reference:'CoordinateMapping3D'=None ):
+        
         
         if (ncols < 0) or (nrows <0) or (nlayers<0):
             raise ValueError('num cols, rows and layers must be >= 0')
