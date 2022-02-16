@@ -1,0 +1,1425 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>common.instructions API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>common.instructions</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from enum import Enum
+
+
+class FAILURE_MODE(Enum):
+    ELASTIC = 0
+    MOHR_COULOMB = 1
+    CAP = 2
+    
+    
+
+
+class InstructionBase:
+
+    def __init__(self, name: str = None, value:str = None ):
+        self.name = name 
+        self.value = value 
+
+class InstructionBlock( InstructionBase ):
+    
+    def __init__( self, name: str = None, value:str = None, hashes: dict = None  ):
+        super().__init__( name, value )
+        self.hashes = hashes.copy() if hashes is not None else {}
+        
+    def __contains__(self, hash_name:str): return True if hash_name in self.hashes else False 
+  
+    def __getitem__(self, key): return self.hashes[key] if key in self.hashes else &#39;&#39; 
+  
+    def __setitem__(self, key, value):  self.set_instruction( key, value )
+        
+    def keys( self ) : return [str(key) for key in self.hashes.keys()]
+         
+    def set_instruction(self, hash_name:str, value:str): 
+        self.hashes[ hash_name.strip()] = str(value).strip() 
+        
+    def set_instructions( self, hashes: dict ):
+        for key,value in hashes.items(): self.set_instruction( key, value )
+     
+    def delete_instruction(self, name:str): 
+        if name.strip() in self.hashes: self.hashes.pop( name.strip() )
+            
+    def clear( self ): self.hashes  = {} 
+    
+    
+class VisageSimulationOptions:
+          
+    def __init__(self):
+        self.commands = {} # a map of instruction blocks, thats what an MII is 
+        
+        self.path = None 
+        self._model_name = None 
+        self.step = -1 
+        self.pinchout_tolerance = 1.0e-6
+        self.auto_config_solver = True
+        self.use_tables = True 
+        self.use_fences = False 
+        self.tables = [] 
+        self.use_tables = True 
+        self.geometry = None 
+        self.cummulate_displacements = True 
+        self.failure_mode =  FAILURE_MODE.ELASTIC #0-elastic 1- plastic 
+        self.multi_step = True 
+        self.gravity = True 
+        self.use_gid = False
+        
+        self.array_data = {} 
+        self.boundary_conditions = {}
+        
+        #this is a pointer to a function that prints command blocks.
+        #it can be changed to print as xml or json, or html from outside as object.stringtify = funtion.
+        #function must receive a single object as argument 
+        #Here it is preconfigued to print as required in an MII file 
+        self.stringtify = VisageSimulationOptions.default_writter
+        
+        self.set_defaults()
+        
+
+        
+    @property
+    def model_name( self ):  return self._model_name
+    
+    @model_name.setter 
+    def model_name( self, value ):
+        #############################
+        #verify the name is compliant 
+        #############################
+        print(&#39;FIXME: verify the name is compliant [2534254]&#39; )
+        self.set_command(&#39;MODELNAME&#39;, str(value) )
+        self._model_name = value 
+        
+        
+    def set_command(self,name, value=None, hashes:dict  = None ):
+        self.commands[ name.strip() ] = InstructionBlock(name.strip(), str(value) if value is not None else None, hashes );
+        
+    def set_instruction( self,command_name, hash_name, hash_value):
+        
+        command_name = command_name.strip();
+        hash_name = hash_name.strip();
+        hash_value = str( hash_value ).strip();
+        
+        if command_name not in self.commands: 
+            self.set_command( command_name, None, None )
+            
+        self.commands[ command_name ][ hash_name ] = hash_value 
+            
+        
+    def configure_default_echo(self):
+        hashedValues = {}
+        hashedValues[&#34;snodes&#34;]    = 1
+        hashedValues[&#34;scgm&#34;]      = -100
+        hashedValues[&#34;selements&#34;] = 1
+        hashedValues[&#34;smaterials&#34;]= 1
+        hashedValues[&#34;sload&#34;]     = 1
+        self.set_command(&#34;NOECHO&#34;, &#34;&#34;, hashedValues)
+    
+    def configure_tidy_name(self):
+        self.set_command(&#34;TIDY&#34;, &#34;  &#34;);
+        self.set_command(&#34;MODELNAME&#34;, self.model_name);
+
+    def configure_default_header(self):
+        hashedValues = {}
+        hashedValues[&#34;module&#34;]= &#34;static&#34;
+        hashedValues[&#34;solution&#34;]= &#34;1&#34;
+        hashedValues[&#34;analysis&#34;]= &#34;3-D&#34;
+        hashedValues[&#34;sautoplastictime&#34;]= &#34;5&#34;
+        hashedValues[&#34;vp_timestep_factor&#34;]= &#34;0.5&#34;
+        hashedValues[&#34;sconvergencemethod&#34;]= &#34;0&#34;
+        hashedValues[&#34;Sanisotropic&#34;]= &#34;0&#34;
+        hashedValues[&#34;Slocalanisotropy&#34;]= &#34;0&#34;
+        hashedValues[&#34;Sjoint_anisotropy&#34;]= &#34;1&#34;
+        hashedValues[&#34;Smpc&#34;]= &#34;0&#34;
+        hashedValues[&#34;Nmpc&#34;]= &#34;0&#34;
+        hashedValues[&#34;Sporepressures&#34;]= &#34;0&#34;
+        hashedValues[&#34;numMeshBlocks&#34;]= &#34;1&#34;
+
+        hashedValues[&#34;Nelements&#34;]= &#34;1&#34;
+        hashedValues[&#34;Nnodes&#34;]= &#34;8&#34;
+        hashedValues[&#34;Nmaterials&#34;]= &#34;1&#34;
+        hashedValues[&#34;Nconstraints&#34;]= &#34;0&#34;
+        hashedValues[&#34;gaussrulebricks&#34;]= &#34;2&#34;
+        hashedValues[&#34;Niterations&#34;]= &#34;1&#34;
+
+        hashedValues[&#34;Sdisplacements&#34;]= &#34;0&#34;
+        hashedValues[&#34;Ndisplacements&#34;]= &#34;0&#34;
+
+        hashedValues[&#34;Nsub_increments&#34;]= &#34;1&#34;
+        hashedValues[&#34;Nfaults&#34;]= &#34;0&#34;
+        hashedValues[&#34;Sfaults&#34;]= &#34;0&#34;
+        hashedValues[&#34;Ndfn&#34;]= &#34;0&#34;
+        hashedValues[&#34;Sdfn&#34;]= &#34;0&#34;
+        hashedValues[&#34;Nmax_ele_per_dfn&#34;]= &#34;0&#34;
+        hashedValues[&#34;Nmax_ele_per_fault&#34;]= &#34;0&#34;
+
+        hashedValues[&#34;vcreep_tolerance&#34;]= &#34;1.000000E+000&#34;
+
+        hashedValues[&#34;Sedgeload&#34;]= &#34;0&#34;
+        hashedValues[&#34;Stemperatures&#34;]= &#34;0&#34;
+        hashedValues[&#34;Sgravity&#34;]= &#34;1&#34;
+        hashedValues[&#34;Saturation&#34;]= &#34;0&#34;
+        hashedValues[&#34;Sconnect&#34;]= &#34;0&#34;
+        hashedValues[&#34;Nconnect&#34;]= &#34;0&#34;
+        hashedValues[&#34;Npointload&#34;]= &#34;0&#34;
+        hashedValues[&#34;Screep&#34;]= &#34;0&#34;
+        hashedValues[&#34;Saccelerator&#34;]= &#34;0&#34;
+        hashedValues[&#34;sperformance_type&#34;]= &#34;2&#34;
+
+        hashedValues[&#34;nyield_gp_number&#34;]= &#34;1&#34;
+        hashedValues[&#34;Nsub_increments&#34;]= &#34;10&#34;
+        hashedValues[&#34;Nquickcalculation&#34;]= &#34;50&#34;
+        hashedValues[&#34;Niterations&#34;]= &#34;10&#34;
+        hashedValues[&#34;suse_all_disp&#34;]= &#34;1&#34;
+        self.set_command(&#34;HEADER&#34;, &#34;&#34;, hashedValues);
+                 
+            
+    def configure_default_solver_section(self):
+        hashedValues = {}
+        hashedValues[&#34;type&#34;]= &#34;7&#34; 
+        hashedValues[&#34;sdeflation &#34;]= &#34;0&#34; 
+        hashedValues[&#34;vtolerance&#34;]= &#34;1.00000E-08&#34; 
+        hashedValues[&#34;niter_stagnation&#34;]= &#34;5&#34; 
+        hashedValues[&#34;serrortrap&#34;]= &#34;3&#34; 
+        hashedValues[&#34;device&#34;]= &#34;&#34; 
+        self.set_command(&#34;SOLVER&#34;, &#34;&#34;, hashedValues);
+        
+    def configure_load_increments(self):
+
+        self.set_command(&#34;INCREMENTS,S&#34;, &#34;5     5&#34;);
+        self.set_command(&#34;VISCOPLASTICMETHOD,S&#34;, &#34;1.000000000E+000    1.000000000E-003&#34;);
+        self.set_command(&#34;LOADSTEP&#34;, &#34;0&#34;);
+              
+    def configure_structured_grid(self):
+        
+        cells = [1,1,1]
+        if self.geometry is not None:
+            cells = self.geometry.element_count
+                                  
+        hashes = {}
+        hashes[&#34;idimension&#34;]= cells[0]
+        hashes[&#34;jdimension&#34;]= cells[1]
+        hashes[&#34;kdimension&#34;]= cells[2]
+        hashes[&#34;ordering&#34;]  = &#34;gpp&#34;
+        self.set_command(&#34;STRUCTUREDGRID&#34;, &#34;&#34;, hashes);      
+            
+    def configure_default_restart( self):
+        hashedValues = {}
+        current_step = str(self.step )
+        prev_step = str(max(0, self.step- 1));
+
+        hashedValues[&#34;Swriterestart&#34;]= &#34;1&#34;
+        hashedValues[&#34;Nwrite_number&#34;]= current_step;
+        hashedValues[&#34;Sreadrestart&#34;]= &#34;0&#34;;
+        hashedValues[&#34;Suse_hdf5&#34;]= &#34;0&#34;;
+        self.set_command(&#34;RESTART&#34;, &#34;&#34;, hashedValues);
+    
+    
+    def configure_default_results(self):
+        hashedValues = {}
+        
+        hashedValues[&#34;petrel_units&#34;]= &#34;metric&#34; 
+        hashedValues[&#34;material_data&#34;]= &#34;1&#34; 
+        hashedValues[&#34;petrel&#34;]= &#34;1&#34; 
+        hashedValues[&#34;GID&#34;]= &#34;1&#34; if self.use_gid else &#34;0&#34; 
+
+        hashedValues[&#34;ele_pressures&#34;]= &#34;1&#34; 
+        hashedValues[&#34;ele_strain&#34;]= &#34;1&#34; 
+        hashedValues[&#34;ele_stresses&#34;]= &#34;1&#34; 
+        hashedValues[&#34;ele_total_stresses&#34;]= &#34;1&#34; 
+
+        hashedValues[&#34;ele_yield_values&#34;]= &#34;1&#34; 
+        hashedValues[&#34;ele_failure_mode&#34;]= &#34;1&#34; 
+
+        hashedValues[&#34;ele_fault_disps&#34;]= &#34;0&#34; 
+        hashedValues[&#34;ele_fault_strain&#34;]= &#34;0&#34; 
+        hashedValues[&#34;ele_fracture_disps&#34;]= &#34;0&#34; 
+        hashedValues[&#34;ele_fracture_strain&#34;]= &#34;0&#34; 
+
+        hashedValues[&#34;unify_faults&#34;]= &#34;1&#34; 
+        hashedValues[&#34;unify_fractures&#34;]= &#34;1&#34; 
+
+        hashedValues[&#34;nodal_total_disps&#34;]= &#34;2&#34; 
+        hashedValues[&#34;petrel_nodal&#34;]= &#34;2&#34; 
+
+        hashedValues[&#34;ele_creep_strains&#34;]= &#34;0&#34; 
+        hashedValues[&#34;ele_dvt_variation&#34;]= &#34;0&#34; 
+        hashedValues[&#34;ele_tot_pl_strain&#34;]= &#34;1&#34; 
+        hashedValues[&#34;permeability_update&#34;]= &#34;0&#34; 
+        self.set_command(&#34;RESULTS&#34;, &#34;&#34;,hashedValues);
+    
+ 
+    
+    def set_defaults(self):
+        self.configure_default_echo()
+        self.configure_tidy_name()
+        self.configure_default_header()
+        
+        self.configure_default_solver_section()
+        self.configure_load_increments()
+        self.configure_structured_grid()
+               
+        self.configure_default_restart();
+        self.configure_default_results();
+        
+                   
+    def configure_multistep_restart(self):
+        
+        hashedValues = {};
+        current_step = str(self.step);
+        prev_step = str(max(0, self.step - 1));
+
+        hashedValues[&#34;Swriterestart&#34;]= &#34;1&#34;
+        hashedValues[&#34;Nwrite_number&#34;]= current_step;
+        hashedValues[&#34;Sreadrestart&#34;] = &#34; 1 &#34; if self.step &gt; 0 else &#34; 0 &#34;;
+        hashedValues[&#34;Nread_number&#34;] = str(prev_step) if self.step &gt; 0 else &#34; 0 &#34;;
+        hashedValues[&#34;Suse_hdf5&#34;]= &#34;0&#34;
+        hashedValues[&#34;writerestart_file&#34;]= self.model_name
+
+        if self.step &lt;= 0: self.commands.pop(&#34;LOADSTEP&#34;) 
+        else: self.set_command(&#34;LOADSTEP&#34;, &#34; 1 &#34;);
+            
+        if self.step &gt;= 1:
+            hashedValues[&#34;readrestart_file&#34;]= self.model_name;
+
+        if self.step &gt;= 2:
+            self.set_instruction(&#34;RESULTS&#34;, &#34;append_loadstep&#34;, str(self.step - 1));
+            hashedValues[&#34;szerotime&#34;] = &#34;1&#34;;
+
+        self.set_command(&#34;RESTART&#34;, &#34;&#34;, hashedValues);
+    
+    
+    def update( self ):
+        
+        if self.step &lt; 0: self.step = 0 
+        
+        #gravity
+        g = &#34;0.0 1.0 0.0&#34; if self.gravity == True else &#34;0.0 0.0 0.0&#34;
+        self.set_command(&#34;GRAVITY&#34;, g);
+        
+        #failure mode 
+        if self.failure_mode == FAILURE_MODE.ELASTIC: 
+            self.set_command(&#34;ELASTIC&#34;);
+        else:
+            self.commands.pop(&#34;ELASTIC&#34;)
+        
+        #restart 
+        self.configure_multistep_restart()
+        
+        #dates 
+        year = str(1900 + self.step);
+        date = &#34;1&#34; + &#34; \n01/01/&#34; + year + &#34; 00:00:00.000&#34;;
+        self.set_command(&#34;PRINTDATES&#34;, date);
+    
+        #grid with new nodes for instance 
+        self.configure_structured_grid()
+                   
+        #this is needed 
+        cells = self.geometry.element_count
+        nCells = cells[0]*cells[1]*cells[2]
+        nNodes = (1+cells[0])*(1+cells[1])*(1+cells[2])
+        self.set_instruction(&#34;HEADER&#34;, &#34;Nelements&#34;, str(nCells));
+        self.set_instruction(&#34;HEADER&#34;, &#34;Nnodes&#34;, str(nNodes));
+        #assuming one material per cell. Even if it is repeated.
+        self.set_instruction(&#34;HEADER&#34;, &#34;Nmaterials&#34;, str(nCells));
+        
+        #model name
+        self.set_command(&#39;MODELNAME&#39;, str(self.model_name)) 
+        
+        if self.use_tables == True and &#39;dvt_table_index&#39; in self.array_data and len(self.tables) &gt; 0 : 
+            self.set_instruction( &#34;RESULTS&#34;, &#34;ele_dvt_variation&#34;, &#34;1&#34; );
+            self.set_instruction( &#34;HEADER&#34;, &#34;ndvttables&#34;, str( len(self.tables) ))
+        else:
+            self.set_instruction( &#34;RESULTS&#34;, &#34;ele_dvt_variation&#34;, &#34;0&#34; );
+            self.set_instruction( &#34;HEADER&#34;, &#34;ndvttables&#34;, &#34;0&#34; );
+                                    
+    
+    def to_string(self):
+        
+        self.update()
+        commands = self.commands
+
+        #these need to be at the top of the MII file 
+        first_commands = [ &#34;MODELNAME&#34;,&#34;NOECHO&#34;,  &#34;HEADER&#34; ]
+        
+        s= &#39;&#39;
+        for block_name in first_commands: 
+            if block_name in commands: s += self.stringtify(commands[block_name])
+        
+        for block_name, block in commands.items():   
+            if block_name not in first_commands:s += self.stringtify(block)
+                   
+        s += &#39;*END\n&#39;
+        print(s)
+        #echo = commands[&#39;NOECHO&#39;]
+        #print( self.stringtify(echo) )
+        
+    @staticmethod
+    def default_writter( item ):
+        
+        preffix1 = &#39;*&#39;
+        preffix2 = &#39;#&#39;
+        if isinstance( item, InstructionBlock ):
+            if item.name is None: return &#39;&#39;
+            
+            s = preffix1 + item.name + &#39;\n&#39;
+            if (item.value is not None) and (len(item.value)&gt;=1):
+                s+=(item.value+&#39;\n&#39;)
+                              
+            if (item.hashes is not None) and (len(item.hashes)&gt;0):
+                for key,value in item.hashes.items():
+                    s += (preffix2 + key + &#34;\t&#34; + str(value) + &#34;\n&#34;);
+                s += &#34;#end\n&#34;;
+        
+        return s+&#39;\n&#39;
+    
+    
+    
+    </code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="common.instructions.FAILURE_MODE"><code class="flex name class">
+<span>class <span class="ident">FAILURE_MODE</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An enumeration.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class FAILURE_MODE(Enum):
+    ELASTIC = 0
+    MOHR_COULOMB = 1
+    CAP = 2</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="common.instructions.FAILURE_MODE.CAP"><code class="name">var <span class="ident">CAP</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="common.instructions.FAILURE_MODE.ELASTIC"><code class="name">var <span class="ident">ELASTIC</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="common.instructions.FAILURE_MODE.MOHR_COULOMB"><code class="name">var <span class="ident">MOHR_COULOMB</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="common.instructions.InstructionBase"><code class="flex name class">
+<span>class <span class="ident">InstructionBase</span></span>
+<span>(</span><span>name: str = None, value: str = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class InstructionBase:
+
+    def __init__(self, name: str = None, value:str = None ):
+        self.name = name 
+        self.value = value </code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="common.instructions.InstructionBlock" href="#common.instructions.InstructionBlock">InstructionBlock</a></li>
+</ul>
+</dd>
+<dt id="common.instructions.InstructionBlock"><code class="flex name class">
+<span>class <span class="ident">InstructionBlock</span></span>
+<span>(</span><span>name: str = None, value: str = None, hashes: dict = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class InstructionBlock( InstructionBase ):
+    
+    def __init__( self, name: str = None, value:str = None, hashes: dict = None  ):
+        super().__init__( name, value )
+        self.hashes = hashes.copy() if hashes is not None else {}
+        
+    def __contains__(self, hash_name:str): return True if hash_name in self.hashes else False 
+  
+    def __getitem__(self, key): return self.hashes[key] if key in self.hashes else &#39;&#39; 
+  
+    def __setitem__(self, key, value):  self.set_instruction( key, value )
+        
+    def keys( self ) : return [str(key) for key in self.hashes.keys()]
+         
+    def set_instruction(self, hash_name:str, value:str): 
+        self.hashes[ hash_name.strip()] = str(value).strip() 
+        
+    def set_instructions( self, hashes: dict ):
+        for key,value in hashes.items(): self.set_instruction( key, value )
+     
+    def delete_instruction(self, name:str): 
+        if name.strip() in self.hashes: self.hashes.pop( name.strip() )
+            
+    def clear( self ): self.hashes  = {} </code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="common.instructions.InstructionBase" href="#common.instructions.InstructionBase">InstructionBase</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="common.instructions.InstructionBlock.clear"><code class="name flex">
+<span>def <span class="ident">clear</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def clear( self ): self.hashes  = {} </code></pre>
+</details>
+</dd>
+<dt id="common.instructions.InstructionBlock.delete_instruction"><code class="name flex">
+<span>def <span class="ident">delete_instruction</span></span>(<span>self, name: str)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete_instruction(self, name:str): 
+    if name.strip() in self.hashes: self.hashes.pop( name.strip() )</code></pre>
+</details>
+</dd>
+<dt id="common.instructions.InstructionBlock.keys"><code class="name flex">
+<span>def <span class="ident">keys</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def keys( self ) : return [str(key) for key in self.hashes.keys()]</code></pre>
+</details>
+</dd>
+<dt id="common.instructions.InstructionBlock.set_instruction"><code class="name flex">
+<span>def <span class="ident">set_instruction</span></span>(<span>self, hash_name: str, value: str)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_instruction(self, hash_name:str, value:str): 
+    self.hashes[ hash_name.strip()] = str(value).strip() </code></pre>
+</details>
+</dd>
+<dt id="common.instructions.InstructionBlock.set_instructions"><code class="name flex">
+<span>def <span class="ident">set_instructions</span></span>(<span>self, hashes: dict)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_instructions( self, hashes: dict ):
+    for key,value in hashes.items(): self.set_instruction( key, value )</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="common.instructions.VisageSimulationOptions"><code class="flex name class">
+<span>class <span class="ident">VisageSimulationOptions</span></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class VisageSimulationOptions:
+          
+    def __init__(self):
+        self.commands = {} # a map of instruction blocks, thats what an MII is 
+        
+        self.path = None 
+        self._model_name = None 
+        self.step = -1 
+        self.pinchout_tolerance = 1.0e-6
+        self.auto_config_solver = True
+        self.use_tables = True 
+        self.use_fences = False 
+        self.tables = [] 
+        self.use_tables = True 
+        self.geometry = None 
+        self.cummulate_displacements = True 
+        self.failure_mode =  FAILURE_MODE.ELASTIC #0-elastic 1- plastic 
+        self.multi_step = True 
+        self.gravity = True 
+        self.use_gid = False
+        
+        self.array_data = {} 
+        self.boundary_conditions = {}
+        
+        #this is a pointer to a function that prints command blocks.
+        #it can be changed to print as xml or json, or html from outside as object.stringtify = funtion.
+        #function must receive a single object as argument 
+        #Here it is preconfigued to print as required in an MII file 
+        self.stringtify = VisageSimulationOptions.default_writter
+        
+        self.set_defaults()
+        
+
+        
+    @property
+    def model_name( self ):  return self._model_name
+    
+    @model_name.setter 
+    def model_name( self, value ):
+        #############################
+        #verify the name is compliant 
+        #############################
+        print(&#39;FIXME: verify the name is compliant [2534254]&#39; )
+        self.set_command(&#39;MODELNAME&#39;, str(value) )
+        self._model_name = value 
+        
+        
+    def set_command(self,name, value=None, hashes:dict  = None ):
+        self.commands[ name.strip() ] = InstructionBlock(name.strip(), str(value) if value is not None else None, hashes );
+        
+    def set_instruction( self,command_name, hash_name, hash_value):
+        
+        command_name = command_name.strip();
+        hash_name = hash_name.strip();
+        hash_value = str( hash_value ).strip();
+        
+        if command_name not in self.commands: 
+            self.set_command( command_name, None, None )
+            
+        self.commands[ command_name ][ hash_name ] = hash_value 
+            
+        
+    def configure_default_echo(self):
+        hashedValues = {}
+        hashedValues[&#34;snodes&#34;]    = 1
+        hashedValues[&#34;scgm&#34;]      = -100
+        hashedValues[&#34;selements&#34;] = 1
+        hashedValues[&#34;smaterials&#34;]= 1
+        hashedValues[&#34;sload&#34;]     = 1
+        self.set_command(&#34;NOECHO&#34;, &#34;&#34;, hashedValues)
+    
+    def configure_tidy_name(self):
+        self.set_command(&#34;TIDY&#34;, &#34;  &#34;);
+        self.set_command(&#34;MODELNAME&#34;, self.model_name);
+
+    def configure_default_header(self):
+        hashedValues = {}
+        hashedValues[&#34;module&#34;]= &#34;static&#34;
+        hashedValues[&#34;solution&#34;]= &#34;1&#34;
+        hashedValues[&#34;analysis&#34;]= &#34;3-D&#34;
+        hashedValues[&#34;sautoplastictime&#34;]= &#34;5&#34;
+        hashedValues[&#34;vp_timestep_factor&#34;]= &#34;0.5&#34;
+        hashedValues[&#34;sconvergencemethod&#34;]= &#34;0&#34;
+        hashedValues[&#34;Sanisotropic&#34;]= &#34;0&#34;
+        hashedValues[&#34;Slocalanisotropy&#34;]= &#34;0&#34;
+        hashedValues[&#34;Sjoint_anisotropy&#34;]= &#34;1&#34;
+        hashedValues[&#34;Smpc&#34;]= &#34;0&#34;
+        hashedValues[&#34;Nmpc&#34;]= &#34;0&#34;
+        hashedValues[&#34;Sporepressures&#34;]= &#34;0&#34;
+        hashedValues[&#34;numMeshBlocks&#34;]= &#34;1&#34;
+
+        hashedValues[&#34;Nelements&#34;]= &#34;1&#34;
+        hashedValues[&#34;Nnodes&#34;]= &#34;8&#34;
+        hashedValues[&#34;Nmaterials&#34;]= &#34;1&#34;
+        hashedValues[&#34;Nconstraints&#34;]= &#34;0&#34;
+        hashedValues[&#34;gaussrulebricks&#34;]= &#34;2&#34;
+        hashedValues[&#34;Niterations&#34;]= &#34;1&#34;
+
+        hashedValues[&#34;Sdisplacements&#34;]= &#34;0&#34;
+        hashedValues[&#34;Ndisplacements&#34;]= &#34;0&#34;
+
+        hashedValues[&#34;Nsub_increments&#34;]= &#34;1&#34;
+        hashedValues[&#34;Nfaults&#34;]= &#34;0&#34;
+        hashedValues[&#34;Sfaults&#34;]= &#34;0&#34;
+        hashedValues[&#34;Ndfn&#34;]= &#34;0&#34;
+        hashedValues[&#34;Sdfn&#34;]= &#34;0&#34;
+        hashedValues[&#34;Nmax_ele_per_dfn&#34;]= &#34;0&#34;
+        hashedValues[&#34;Nmax_ele_per_fault&#34;]= &#34;0&#34;
+
+        hashedValues[&#34;vcreep_tolerance&#34;]= &#34;1.000000E+000&#34;
+
+        hashedValues[&#34;Sedgeload&#34;]= &#34;0&#34;
+        hashedValues[&#34;Stemperatures&#34;]= &#34;0&#34;
+        hashedValues[&#34;Sgravity&#34;]= &#34;1&#34;
+        hashedValues[&#34;Saturation&#34;]= &#34;0&#34;
+        hashedValues[&#34;Sconnect&#34;]= &#34;0&#34;
+        hashedValues[&#34;Nconnect&#34;]= &#34;0&#34;
+        hashedValues[&#34;Npointload&#34;]= &#34;0&#34;
+        hashedValues[&#34;Screep&#34;]= &#34;0&#34;
+        hashedValues[&#34;Saccelerator&#34;]= &#34;0&#34;
+        hashedValues[&#34;sperformance_type&#34;]= &#34;2&#34;
+
+        hashedValues[&#34;nyield_gp_number&#34;]= &#34;1&#34;
+        hashedValues[&#34;Nsub_increments&#34;]= &#34;10&#34;
+        hashedValues[&#34;Nquickcalculation&#34;]= &#34;50&#34;
+        hashedValues[&#34;Niterations&#34;]= &#34;10&#34;
+        hashedValues[&#34;suse_all_disp&#34;]= &#34;1&#34;
+        self.set_command(&#34;HEADER&#34;, &#34;&#34;, hashedValues);
+                 
+            
+    def configure_default_solver_section(self):
+        hashedValues = {}
+        hashedValues[&#34;type&#34;]= &#34;7&#34; 
+        hashedValues[&#34;sdeflation &#34;]= &#34;0&#34; 
+        hashedValues[&#34;vtolerance&#34;]= &#34;1.00000E-08&#34; 
+        hashedValues[&#34;niter_stagnation&#34;]= &#34;5&#34; 
+        hashedValues[&#34;serrortrap&#34;]= &#34;3&#34; 
+        hashedValues[&#34;device&#34;]= &#34;&#34; 
+        self.set_command(&#34;SOLVER&#34;, &#34;&#34;, hashedValues);
+        
+    def configure_load_increments(self):
+
+        self.set_command(&#34;INCREMENTS,S&#34;, &#34;5     5&#34;);
+        self.set_command(&#34;VISCOPLASTICMETHOD,S&#34;, &#34;1.000000000E+000    1.000000000E-003&#34;);
+        self.set_command(&#34;LOADSTEP&#34;, &#34;0&#34;);
+              
+    def configure_structured_grid(self):
+        
+        cells = [1,1,1]
+        if self.geometry is not None:
+            cells = self.geometry.element_count
+                                  
+        hashes = {}
+        hashes[&#34;idimension&#34;]= cells[0]
+        hashes[&#34;jdimension&#34;]= cells[1]
+        hashes[&#34;kdimension&#34;]= cells[2]
+        hashes[&#34;ordering&#34;]  = &#34;gpp&#34;
+        self.set_command(&#34;STRUCTUREDGRID&#34;, &#34;&#34;, hashes);      
+            
+    def configure_default_restart( self):
+        hashedValues = {}
+        current_step = str(self.step )
+        prev_step = str(max(0, self.step- 1));
+
+        hashedValues[&#34;Swriterestart&#34;]= &#34;1&#34;
+        hashedValues[&#34;Nwrite_number&#34;]= current_step;
+        hashedValues[&#34;Sreadrestart&#34;]= &#34;0&#34;;
+        hashedValues[&#34;Suse_hdf5&#34;]= &#34;0&#34;;
+        self.set_command(&#34;RESTART&#34;, &#34;&#34;, hashedValues);
+    
+    
+    def configure_default_results(self):
+        hashedValues = {}
+        
+        hashedValues[&#34;petrel_units&#34;]= &#34;metric&#34; 
+        hashedValues[&#34;material_data&#34;]= &#34;1&#34; 
+        hashedValues[&#34;petrel&#34;]= &#34;1&#34; 
+        hashedValues[&#34;GID&#34;]= &#34;1&#34; if self.use_gid else &#34;0&#34; 
+
+        hashedValues[&#34;ele_pressures&#34;]= &#34;1&#34; 
+        hashedValues[&#34;ele_strain&#34;]= &#34;1&#34; 
+        hashedValues[&#34;ele_stresses&#34;]= &#34;1&#34; 
+        hashedValues[&#34;ele_total_stresses&#34;]= &#34;1&#34; 
+
+        hashedValues[&#34;ele_yield_values&#34;]= &#34;1&#34; 
+        hashedValues[&#34;ele_failure_mode&#34;]= &#34;1&#34; 
+
+        hashedValues[&#34;ele_fault_disps&#34;]= &#34;0&#34; 
+        hashedValues[&#34;ele_fault_strain&#34;]= &#34;0&#34; 
+        hashedValues[&#34;ele_fracture_disps&#34;]= &#34;0&#34; 
+        hashedValues[&#34;ele_fracture_strain&#34;]= &#34;0&#34; 
+
+        hashedValues[&#34;unify_faults&#34;]= &#34;1&#34; 
+        hashedValues[&#34;unify_fractures&#34;]= &#34;1&#34; 
+
+        hashedValues[&#34;nodal_total_disps&#34;]= &#34;2&#34; 
+        hashedValues[&#34;petrel_nodal&#34;]= &#34;2&#34; 
+
+        hashedValues[&#34;ele_creep_strains&#34;]= &#34;0&#34; 
+        hashedValues[&#34;ele_dvt_variation&#34;]= &#34;0&#34; 
+        hashedValues[&#34;ele_tot_pl_strain&#34;]= &#34;1&#34; 
+        hashedValues[&#34;permeability_update&#34;]= &#34;0&#34; 
+        self.set_command(&#34;RESULTS&#34;, &#34;&#34;,hashedValues);
+    
+ 
+    
+    def set_defaults(self):
+        self.configure_default_echo()
+        self.configure_tidy_name()
+        self.configure_default_header()
+        
+        self.configure_default_solver_section()
+        self.configure_load_increments()
+        self.configure_structured_grid()
+               
+        self.configure_default_restart();
+        self.configure_default_results();
+        
+                   
+    def configure_multistep_restart(self):
+        
+        hashedValues = {};
+        current_step = str(self.step);
+        prev_step = str(max(0, self.step - 1));
+
+        hashedValues[&#34;Swriterestart&#34;]= &#34;1&#34;
+        hashedValues[&#34;Nwrite_number&#34;]= current_step;
+        hashedValues[&#34;Sreadrestart&#34;] = &#34; 1 &#34; if self.step &gt; 0 else &#34; 0 &#34;;
+        hashedValues[&#34;Nread_number&#34;] = str(prev_step) if self.step &gt; 0 else &#34; 0 &#34;;
+        hashedValues[&#34;Suse_hdf5&#34;]= &#34;0&#34;
+        hashedValues[&#34;writerestart_file&#34;]= self.model_name
+
+        if self.step &lt;= 0: self.commands.pop(&#34;LOADSTEP&#34;) 
+        else: self.set_command(&#34;LOADSTEP&#34;, &#34; 1 &#34;);
+            
+        if self.step &gt;= 1:
+            hashedValues[&#34;readrestart_file&#34;]= self.model_name;
+
+        if self.step &gt;= 2:
+            self.set_instruction(&#34;RESULTS&#34;, &#34;append_loadstep&#34;, str(self.step - 1));
+            hashedValues[&#34;szerotime&#34;] = &#34;1&#34;;
+
+        self.set_command(&#34;RESTART&#34;, &#34;&#34;, hashedValues);
+    
+    
+    def update( self ):
+        
+        if self.step &lt; 0: self.step = 0 
+        
+        #gravity
+        g = &#34;0.0 1.0 0.0&#34; if self.gravity == True else &#34;0.0 0.0 0.0&#34;
+        self.set_command(&#34;GRAVITY&#34;, g);
+        
+        #failure mode 
+        if self.failure_mode == FAILURE_MODE.ELASTIC: 
+            self.set_command(&#34;ELASTIC&#34;);
+        else:
+            self.commands.pop(&#34;ELASTIC&#34;)
+        
+        #restart 
+        self.configure_multistep_restart()
+        
+        #dates 
+        year = str(1900 + self.step);
+        date = &#34;1&#34; + &#34; \n01/01/&#34; + year + &#34; 00:00:00.000&#34;;
+        self.set_command(&#34;PRINTDATES&#34;, date);
+    
+        #grid with new nodes for instance 
+        self.configure_structured_grid()
+                   
+        #this is needed 
+        cells = self.geometry.element_count
+        nCells = cells[0]*cells[1]*cells[2]
+        nNodes = (1+cells[0])*(1+cells[1])*(1+cells[2])
+        self.set_instruction(&#34;HEADER&#34;, &#34;Nelements&#34;, str(nCells));
+        self.set_instruction(&#34;HEADER&#34;, &#34;Nnodes&#34;, str(nNodes));
+        #assuming one material per cell. Even if it is repeated.
+        self.set_instruction(&#34;HEADER&#34;, &#34;Nmaterials&#34;, str(nCells));
+        
+        #model name
+        self.set_command(&#39;MODELNAME&#39;, str(self.model_name)) 
+        
+        if self.use_tables == True and &#39;dvt_table_index&#39; in self.array_data and len(self.tables) &gt; 0 : 
+            self.set_instruction( &#34;RESULTS&#34;, &#34;ele_dvt_variation&#34;, &#34;1&#34; );
+            self.set_instruction( &#34;HEADER&#34;, &#34;ndvttables&#34;, str( len(self.tables) ))
+        else:
+            self.set_instruction( &#34;RESULTS&#34;, &#34;ele_dvt_variation&#34;, &#34;0&#34; );
+            self.set_instruction( &#34;HEADER&#34;, &#34;ndvttables&#34;, &#34;0&#34; );
+                                    
+    
+    def to_string(self):
+        
+        self.update()
+        commands = self.commands
+
+        #these need to be at the top of the MII file 
+        first_commands = [ &#34;MODELNAME&#34;,&#34;NOECHO&#34;,  &#34;HEADER&#34; ]
+        
+        s= &#39;&#39;
+        for block_name in first_commands: 
+            if block_name in commands: s += self.stringtify(commands[block_name])
+        
+        for block_name, block in commands.items():   
+            if block_name not in first_commands:s += self.stringtify(block)
+                   
+        s += &#39;*END\n&#39;
+        print(s)
+        #echo = commands[&#39;NOECHO&#39;]
+        #print( self.stringtify(echo) )
+        
+    @staticmethod
+    def default_writter( item ):
+        
+        preffix1 = &#39;*&#39;
+        preffix2 = &#39;#&#39;
+        if isinstance( item, InstructionBlock ):
+            if item.name is None: return &#39;&#39;
+            
+            s = preffix1 + item.name + &#39;\n&#39;
+            if (item.value is not None) and (len(item.value)&gt;=1):
+                s+=(item.value+&#39;\n&#39;)
+                              
+            if (item.hashes is not None) and (len(item.hashes)&gt;0):
+                for key,value in item.hashes.items():
+                    s += (preffix2 + key + &#34;\t&#34; + str(value) + &#34;\n&#34;);
+                s += &#34;#end\n&#34;;
+        
+        return s+&#39;\n&#39;</code></pre>
+</details>
+<h3>Static methods</h3>
+<dl>
+<dt id="common.instructions.VisageSimulationOptions.default_writter"><code class="name flex">
+<span>def <span class="ident">default_writter</span></span>(<span>item)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def default_writter( item ):
+    
+    preffix1 = &#39;*&#39;
+    preffix2 = &#39;#&#39;
+    if isinstance( item, InstructionBlock ):
+        if item.name is None: return &#39;&#39;
+        
+        s = preffix1 + item.name + &#39;\n&#39;
+        if (item.value is not None) and (len(item.value)&gt;=1):
+            s+=(item.value+&#39;\n&#39;)
+                          
+        if (item.hashes is not None) and (len(item.hashes)&gt;0):
+            for key,value in item.hashes.items():
+                s += (preffix2 + key + &#34;\t&#34; + str(value) + &#34;\n&#34;);
+            s += &#34;#end\n&#34;;
+    
+    return s+&#39;\n&#39;</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="common.instructions.VisageSimulationOptions.model_name"><code class="name">var <span class="ident">model_name</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def model_name( self ):  return self._model_name</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="common.instructions.VisageSimulationOptions.configure_default_echo"><code class="name flex">
+<span>def <span class="ident">configure_default_echo</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def configure_default_echo(self):
+    hashedValues = {}
+    hashedValues[&#34;snodes&#34;]    = 1
+    hashedValues[&#34;scgm&#34;]      = -100
+    hashedValues[&#34;selements&#34;] = 1
+    hashedValues[&#34;smaterials&#34;]= 1
+    hashedValues[&#34;sload&#34;]     = 1
+    self.set_command(&#34;NOECHO&#34;, &#34;&#34;, hashedValues)</code></pre>
+</details>
+</dd>
+<dt id="common.instructions.VisageSimulationOptions.configure_default_header"><code class="name flex">
+<span>def <span class="ident">configure_default_header</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def configure_default_header(self):
+    hashedValues = {}
+    hashedValues[&#34;module&#34;]= &#34;static&#34;
+    hashedValues[&#34;solution&#34;]= &#34;1&#34;
+    hashedValues[&#34;analysis&#34;]= &#34;3-D&#34;
+    hashedValues[&#34;sautoplastictime&#34;]= &#34;5&#34;
+    hashedValues[&#34;vp_timestep_factor&#34;]= &#34;0.5&#34;
+    hashedValues[&#34;sconvergencemethod&#34;]= &#34;0&#34;
+    hashedValues[&#34;Sanisotropic&#34;]= &#34;0&#34;
+    hashedValues[&#34;Slocalanisotropy&#34;]= &#34;0&#34;
+    hashedValues[&#34;Sjoint_anisotropy&#34;]= &#34;1&#34;
+    hashedValues[&#34;Smpc&#34;]= &#34;0&#34;
+    hashedValues[&#34;Nmpc&#34;]= &#34;0&#34;
+    hashedValues[&#34;Sporepressures&#34;]= &#34;0&#34;
+    hashedValues[&#34;numMeshBlocks&#34;]= &#34;1&#34;
+
+    hashedValues[&#34;Nelements&#34;]= &#34;1&#34;
+    hashedValues[&#34;Nnodes&#34;]= &#34;8&#34;
+    hashedValues[&#34;Nmaterials&#34;]= &#34;1&#34;
+    hashedValues[&#34;Nconstraints&#34;]= &#34;0&#34;
+    hashedValues[&#34;gaussrulebricks&#34;]= &#34;2&#34;
+    hashedValues[&#34;Niterations&#34;]= &#34;1&#34;
+
+    hashedValues[&#34;Sdisplacements&#34;]= &#34;0&#34;
+    hashedValues[&#34;Ndisplacements&#34;]= &#34;0&#34;
+
+    hashedValues[&#34;Nsub_increments&#34;]= &#34;1&#34;
+    hashedValues[&#34;Nfaults&#34;]= &#34;0&#34;
+    hashedValues[&#34;Sfaults&#34;]= &#34;0&#34;
+    hashedValues[&#34;Ndfn&#34;]= &#34;0&#34;
+    hashedValues[&#34;Sdfn&#34;]= &#34;0&#34;
+    hashedValues[&#34;Nmax_ele_per_dfn&#34;]= &#34;0&#34;
+    hashedValues[&#34;Nmax_ele_per_fault&#34;]= &#34;0&#34;
+
+    hashedValues[&#34;vcreep_tolerance&#34;]= &#34;1.000000E+000&#34;
+
+    hashedValues[&#34;Sedgeload&#34;]= &#34;0&#34;
+    hashedValues[&#34;Stemperatures&#34;]= &#34;0&#34;
+    hashedValues[&#34;Sgravity&#34;]= &#34;1&#34;
+    hashedValues[&#34;Saturation&#34;]= &#34;0&#34;
+    hashedValues[&#34;Sconnect&#34;]= &#34;0&#34;
+    hashedValues[&#34;Nconnect&#34;]= &#34;0&#34;
+    hashedValues[&#34;Npointload&#34;]= &#34;0&#34;
+    hashedValues[&#34;Screep&#34;]= &#34;0&#34;
+    hashedValues[&#34;Saccelerator&#34;]= &#34;0&#34;
+    hashedValues[&#34;sperformance_type&#34;]= &#34;2&#34;
+
+    hashedValues[&#34;nyield_gp_number&#34;]= &#34;1&#34;
+    hashedValues[&#34;Nsub_increments&#34;]= &#34;10&#34;
+    hashedValues[&#34;Nquickcalculation&#34;]= &#34;50&#34;
+    hashedValues[&#34;Niterations&#34;]= &#34;10&#34;
+    hashedValues[&#34;suse_all_disp&#34;]= &#34;1&#34;
+    self.set_command(&#34;HEADER&#34;, &#34;&#34;, hashedValues);</code></pre>
+</details>
+</dd>
+<dt id="common.instructions.VisageSimulationOptions.configure_default_restart"><code class="name flex">
+<span>def <span class="ident">configure_default_restart</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def configure_default_restart( self):
+    hashedValues = {}
+    current_step = str(self.step )
+    prev_step = str(max(0, self.step- 1));
+
+    hashedValues[&#34;Swriterestart&#34;]= &#34;1&#34;
+    hashedValues[&#34;Nwrite_number&#34;]= current_step;
+    hashedValues[&#34;Sreadrestart&#34;]= &#34;0&#34;;
+    hashedValues[&#34;Suse_hdf5&#34;]= &#34;0&#34;;
+    self.set_command(&#34;RESTART&#34;, &#34;&#34;, hashedValues);</code></pre>
+</details>
+</dd>
+<dt id="common.instructions.VisageSimulationOptions.configure_default_results"><code class="name flex">
+<span>def <span class="ident">configure_default_results</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def configure_default_results(self):
+    hashedValues = {}
+    
+    hashedValues[&#34;petrel_units&#34;]= &#34;metric&#34; 
+    hashedValues[&#34;material_data&#34;]= &#34;1&#34; 
+    hashedValues[&#34;petrel&#34;]= &#34;1&#34; 
+    hashedValues[&#34;GID&#34;]= &#34;1&#34; if self.use_gid else &#34;0&#34; 
+
+    hashedValues[&#34;ele_pressures&#34;]= &#34;1&#34; 
+    hashedValues[&#34;ele_strain&#34;]= &#34;1&#34; 
+    hashedValues[&#34;ele_stresses&#34;]= &#34;1&#34; 
+    hashedValues[&#34;ele_total_stresses&#34;]= &#34;1&#34; 
+
+    hashedValues[&#34;ele_yield_values&#34;]= &#34;1&#34; 
+    hashedValues[&#34;ele_failure_mode&#34;]= &#34;1&#34; 
+
+    hashedValues[&#34;ele_fault_disps&#34;]= &#34;0&#34; 
+    hashedValues[&#34;ele_fault_strain&#34;]= &#34;0&#34; 
+    hashedValues[&#34;ele_fracture_disps&#34;]= &#34;0&#34; 
+    hashedValues[&#34;ele_fracture_strain&#34;]= &#34;0&#34; 
+
+    hashedValues[&#34;unify_faults&#34;]= &#34;1&#34; 
+    hashedValues[&#34;unify_fractures&#34;]= &#34;1&#34; 
+
+    hashedValues[&#34;nodal_total_disps&#34;]= &#34;2&#34; 
+    hashedValues[&#34;petrel_nodal&#34;]= &#34;2&#34; 
+
+    hashedValues[&#34;ele_creep_strains&#34;]= &#34;0&#34; 
+    hashedValues[&#34;ele_dvt_variation&#34;]= &#34;0&#34; 
+    hashedValues[&#34;ele_tot_pl_strain&#34;]= &#34;1&#34; 
+    hashedValues[&#34;permeability_update&#34;]= &#34;0&#34; 
+    self.set_command(&#34;RESULTS&#34;, &#34;&#34;,hashedValues);</code></pre>
+</details>
+</dd>
+<dt id="common.instructions.VisageSimulationOptions.configure_default_solver_section"><code class="name flex">
+<span>def <span class="ident">configure_default_solver_section</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def configure_default_solver_section(self):
+    hashedValues = {}
+    hashedValues[&#34;type&#34;]= &#34;7&#34; 
+    hashedValues[&#34;sdeflation &#34;]= &#34;0&#34; 
+    hashedValues[&#34;vtolerance&#34;]= &#34;1.00000E-08&#34; 
+    hashedValues[&#34;niter_stagnation&#34;]= &#34;5&#34; 
+    hashedValues[&#34;serrortrap&#34;]= &#34;3&#34; 
+    hashedValues[&#34;device&#34;]= &#34;&#34; 
+    self.set_command(&#34;SOLVER&#34;, &#34;&#34;, hashedValues);</code></pre>
+</details>
+</dd>
+<dt id="common.instructions.VisageSimulationOptions.configure_load_increments"><code class="name flex">
+<span>def <span class="ident">configure_load_increments</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def configure_load_increments(self):
+
+    self.set_command(&#34;INCREMENTS,S&#34;, &#34;5     5&#34;);
+    self.set_command(&#34;VISCOPLASTICMETHOD,S&#34;, &#34;1.000000000E+000    1.000000000E-003&#34;);
+    self.set_command(&#34;LOADSTEP&#34;, &#34;0&#34;);</code></pre>
+</details>
+</dd>
+<dt id="common.instructions.VisageSimulationOptions.configure_multistep_restart"><code class="name flex">
+<span>def <span class="ident">configure_multistep_restart</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def configure_multistep_restart(self):
+    
+    hashedValues = {};
+    current_step = str(self.step);
+    prev_step = str(max(0, self.step - 1));
+
+    hashedValues[&#34;Swriterestart&#34;]= &#34;1&#34;
+    hashedValues[&#34;Nwrite_number&#34;]= current_step;
+    hashedValues[&#34;Sreadrestart&#34;] = &#34; 1 &#34; if self.step &gt; 0 else &#34; 0 &#34;;
+    hashedValues[&#34;Nread_number&#34;] = str(prev_step) if self.step &gt; 0 else &#34; 0 &#34;;
+    hashedValues[&#34;Suse_hdf5&#34;]= &#34;0&#34;
+    hashedValues[&#34;writerestart_file&#34;]= self.model_name
+
+    if self.step &lt;= 0: self.commands.pop(&#34;LOADSTEP&#34;) 
+    else: self.set_command(&#34;LOADSTEP&#34;, &#34; 1 &#34;);
+        
+    if self.step &gt;= 1:
+        hashedValues[&#34;readrestart_file&#34;]= self.model_name;
+
+    if self.step &gt;= 2:
+        self.set_instruction(&#34;RESULTS&#34;, &#34;append_loadstep&#34;, str(self.step - 1));
+        hashedValues[&#34;szerotime&#34;] = &#34;1&#34;;
+
+    self.set_command(&#34;RESTART&#34;, &#34;&#34;, hashedValues);</code></pre>
+</details>
+</dd>
+<dt id="common.instructions.VisageSimulationOptions.configure_structured_grid"><code class="name flex">
+<span>def <span class="ident">configure_structured_grid</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def configure_structured_grid(self):
+    
+    cells = [1,1,1]
+    if self.geometry is not None:
+        cells = self.geometry.element_count
+                              
+    hashes = {}
+    hashes[&#34;idimension&#34;]= cells[0]
+    hashes[&#34;jdimension&#34;]= cells[1]
+    hashes[&#34;kdimension&#34;]= cells[2]
+    hashes[&#34;ordering&#34;]  = &#34;gpp&#34;
+    self.set_command(&#34;STRUCTUREDGRID&#34;, &#34;&#34;, hashes);      </code></pre>
+</details>
+</dd>
+<dt id="common.instructions.VisageSimulationOptions.configure_tidy_name"><code class="name flex">
+<span>def <span class="ident">configure_tidy_name</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def configure_tidy_name(self):
+    self.set_command(&#34;TIDY&#34;, &#34;  &#34;);
+    self.set_command(&#34;MODELNAME&#34;, self.model_name);</code></pre>
+</details>
+</dd>
+<dt id="common.instructions.VisageSimulationOptions.set_command"><code class="name flex">
+<span>def <span class="ident">set_command</span></span>(<span>self, name, value=None, hashes: dict = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_command(self,name, value=None, hashes:dict  = None ):
+    self.commands[ name.strip() ] = InstructionBlock(name.strip(), str(value) if value is not None else None, hashes );</code></pre>
+</details>
+</dd>
+<dt id="common.instructions.VisageSimulationOptions.set_defaults"><code class="name flex">
+<span>def <span class="ident">set_defaults</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_defaults(self):
+    self.configure_default_echo()
+    self.configure_tidy_name()
+    self.configure_default_header()
+    
+    self.configure_default_solver_section()
+    self.configure_load_increments()
+    self.configure_structured_grid()
+           
+    self.configure_default_restart();
+    self.configure_default_results();</code></pre>
+</details>
+</dd>
+<dt id="common.instructions.VisageSimulationOptions.set_instruction"><code class="name flex">
+<span>def <span class="ident">set_instruction</span></span>(<span>self, command_name, hash_name, hash_value)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_instruction( self,command_name, hash_name, hash_value):
+    
+    command_name = command_name.strip();
+    hash_name = hash_name.strip();
+    hash_value = str( hash_value ).strip();
+    
+    if command_name not in self.commands: 
+        self.set_command( command_name, None, None )
+        
+    self.commands[ command_name ][ hash_name ] = hash_value </code></pre>
+</details>
+</dd>
+<dt id="common.instructions.VisageSimulationOptions.to_string"><code class="name flex">
+<span>def <span class="ident">to_string</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_string(self):
+    
+    self.update()
+    commands = self.commands
+
+    #these need to be at the top of the MII file 
+    first_commands = [ &#34;MODELNAME&#34;,&#34;NOECHO&#34;,  &#34;HEADER&#34; ]
+    
+    s= &#39;&#39;
+    for block_name in first_commands: 
+        if block_name in commands: s += self.stringtify(commands[block_name])
+    
+    for block_name, block in commands.items():   
+        if block_name not in first_commands:s += self.stringtify(block)
+               
+    s += &#39;*END\n&#39;
+    print(s)</code></pre>
+</details>
+</dd>
+<dt id="common.instructions.VisageSimulationOptions.update"><code class="name flex">
+<span>def <span class="ident">update</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update( self ):
+    
+    if self.step &lt; 0: self.step = 0 
+    
+    #gravity
+    g = &#34;0.0 1.0 0.0&#34; if self.gravity == True else &#34;0.0 0.0 0.0&#34;
+    self.set_command(&#34;GRAVITY&#34;, g);
+    
+    #failure mode 
+    if self.failure_mode == FAILURE_MODE.ELASTIC: 
+        self.set_command(&#34;ELASTIC&#34;);
+    else:
+        self.commands.pop(&#34;ELASTIC&#34;)
+    
+    #restart 
+    self.configure_multistep_restart()
+    
+    #dates 
+    year = str(1900 + self.step);
+    date = &#34;1&#34; + &#34; \n01/01/&#34; + year + &#34; 00:00:00.000&#34;;
+    self.set_command(&#34;PRINTDATES&#34;, date);
+
+    #grid with new nodes for instance 
+    self.configure_structured_grid()
+               
+    #this is needed 
+    cells = self.geometry.element_count
+    nCells = cells[0]*cells[1]*cells[2]
+    nNodes = (1+cells[0])*(1+cells[1])*(1+cells[2])
+    self.set_instruction(&#34;HEADER&#34;, &#34;Nelements&#34;, str(nCells));
+    self.set_instruction(&#34;HEADER&#34;, &#34;Nnodes&#34;, str(nNodes));
+    #assuming one material per cell. Even if it is repeated.
+    self.set_instruction(&#34;HEADER&#34;, &#34;Nmaterials&#34;, str(nCells));
+    
+    #model name
+    self.set_command(&#39;MODELNAME&#39;, str(self.model_name)) 
+    
+    if self.use_tables == True and &#39;dvt_table_index&#39; in self.array_data and len(self.tables) &gt; 0 : 
+        self.set_instruction( &#34;RESULTS&#34;, &#34;ele_dvt_variation&#34;, &#34;1&#34; );
+        self.set_instruction( &#34;HEADER&#34;, &#34;ndvttables&#34;, str( len(self.tables) ))
+    else:
+        self.set_instruction( &#34;RESULTS&#34;, &#34;ele_dvt_variation&#34;, &#34;0&#34; );
+        self.set_instruction( &#34;HEADER&#34;, &#34;ndvttables&#34;, &#34;0&#34; );</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="common" href="index.html">common</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="common.instructions.FAILURE_MODE" href="#common.instructions.FAILURE_MODE">FAILURE_MODE</a></code></h4>
+<ul class="">
+<li><code><a title="common.instructions.FAILURE_MODE.CAP" href="#common.instructions.FAILURE_MODE.CAP">CAP</a></code></li>
+<li><code><a title="common.instructions.FAILURE_MODE.ELASTIC" href="#common.instructions.FAILURE_MODE.ELASTIC">ELASTIC</a></code></li>
+<li><code><a title="common.instructions.FAILURE_MODE.MOHR_COULOMB" href="#common.instructions.FAILURE_MODE.MOHR_COULOMB">MOHR_COULOMB</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="common.instructions.InstructionBase" href="#common.instructions.InstructionBase">InstructionBase</a></code></h4>
+</li>
+<li>
+<h4><code><a title="common.instructions.InstructionBlock" href="#common.instructions.InstructionBlock">InstructionBlock</a></code></h4>
+<ul class="">
+<li><code><a title="common.instructions.InstructionBlock.clear" href="#common.instructions.InstructionBlock.clear">clear</a></code></li>
+<li><code><a title="common.instructions.InstructionBlock.delete_instruction" href="#common.instructions.InstructionBlock.delete_instruction">delete_instruction</a></code></li>
+<li><code><a title="common.instructions.InstructionBlock.keys" href="#common.instructions.InstructionBlock.keys">keys</a></code></li>
+<li><code><a title="common.instructions.InstructionBlock.set_instruction" href="#common.instructions.InstructionBlock.set_instruction">set_instruction</a></code></li>
+<li><code><a title="common.instructions.InstructionBlock.set_instructions" href="#common.instructions.InstructionBlock.set_instructions">set_instructions</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="common.instructions.VisageSimulationOptions" href="#common.instructions.VisageSimulationOptions">VisageSimulationOptions</a></code></h4>
+<ul class="">
+<li><code><a title="common.instructions.VisageSimulationOptions.configure_default_echo" href="#common.instructions.VisageSimulationOptions.configure_default_echo">configure_default_echo</a></code></li>
+<li><code><a title="common.instructions.VisageSimulationOptions.configure_default_header" href="#common.instructions.VisageSimulationOptions.configure_default_header">configure_default_header</a></code></li>
+<li><code><a title="common.instructions.VisageSimulationOptions.configure_default_restart" href="#common.instructions.VisageSimulationOptions.configure_default_restart">configure_default_restart</a></code></li>
+<li><code><a title="common.instructions.VisageSimulationOptions.configure_default_results" href="#common.instructions.VisageSimulationOptions.configure_default_results">configure_default_results</a></code></li>
+<li><code><a title="common.instructions.VisageSimulationOptions.configure_default_solver_section" href="#common.instructions.VisageSimulationOptions.configure_default_solver_section">configure_default_solver_section</a></code></li>
+<li><code><a title="common.instructions.VisageSimulationOptions.configure_load_increments" href="#common.instructions.VisageSimulationOptions.configure_load_increments">configure_load_increments</a></code></li>
+<li><code><a title="common.instructions.VisageSimulationOptions.configure_multistep_restart" href="#common.instructions.VisageSimulationOptions.configure_multistep_restart">configure_multistep_restart</a></code></li>
+<li><code><a title="common.instructions.VisageSimulationOptions.configure_structured_grid" href="#common.instructions.VisageSimulationOptions.configure_structured_grid">configure_structured_grid</a></code></li>
+<li><code><a title="common.instructions.VisageSimulationOptions.configure_tidy_name" href="#common.instructions.VisageSimulationOptions.configure_tidy_name">configure_tidy_name</a></code></li>
+<li><code><a title="common.instructions.VisageSimulationOptions.default_writter" href="#common.instructions.VisageSimulationOptions.default_writter">default_writter</a></code></li>
+<li><code><a title="common.instructions.VisageSimulationOptions.model_name" href="#common.instructions.VisageSimulationOptions.model_name">model_name</a></code></li>
+<li><code><a title="common.instructions.VisageSimulationOptions.set_command" href="#common.instructions.VisageSimulationOptions.set_command">set_command</a></code></li>
+<li><code><a title="common.instructions.VisageSimulationOptions.set_defaults" href="#common.instructions.VisageSimulationOptions.set_defaults">set_defaults</a></code></li>
+<li><code><a title="common.instructions.VisageSimulationOptions.set_instruction" href="#common.instructions.VisageSimulationOptions.set_instruction">set_instruction</a></code></li>
+<li><code><a title="common.instructions.VisageSimulationOptions.to_string" href="#common.instructions.VisageSimulationOptions.to_string">to_string</a></code></li>
+<li><code><a title="common.instructions.VisageSimulationOptions.update" href="#common.instructions.VisageSimulationOptions.update">update</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>

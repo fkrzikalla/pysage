@@ -123,9 +123,13 @@ class StructuredBase:
            |/     /  base of the element 
            0-----1
 
-             x
-       
-               base  
+               z 
+              |
+              |
+           x  /-----y
+             /
+         
+         base  
        
             3 _ __ 2
             /      /
