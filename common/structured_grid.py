@@ -14,6 +14,18 @@ class StructuredGrid( StructuredBase ):
         #list of numpy arrays 
         self._zvalues = [np.zeros(self.nodes_per_layer) for n in range(0,self.nlayers)]
         
+    @property
+    def is_flipped( self ):
+        '''
+        Returns true if the surface 0 is the shallower otherwise returns False
+        '''
+        if len(self._zvalues)>=2:
+            z0 = self._zvalues[0]
+            z1 = self._zvalues[ len(self._zvalues) -1 ]
+            if sum(z0)/len(z0) > sum(z1)/len(z1): return True
+            
+        return False 
+        
     @property 
     def depths( self ): return self._zvalues;
 
@@ -93,7 +105,7 @@ class StructuredGrid( StructuredBase ):
         
         return np.array( all_data )
     
-    
+    #only non-inverted grids. 
     def get_node_depths_from_top( self ):
         
         '''
@@ -118,6 +130,7 @@ class StructuredGrid( StructuredBase ):
             
         return ret.reshape( (self.nsurfaces,self.nodes_per_layer) ) 
 
+    
     def get_pinched_elements( self, pinchout_tolerance:float  = 1.0e-6):
         
         '''

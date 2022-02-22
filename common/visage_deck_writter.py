@@ -1,6 +1,7 @@
 from enum import Enum
 import numpy as np
 import sys, os  
+from collections import defaultdict,deque
 
 from pysage.common.coordinate_map import CoordinateMapping3D as CoordinateMapping3D 
 from pysage.common.structured_base import StructuredBase as StructuredBase 
@@ -170,6 +171,8 @@ class VisageDeckWritter:
         base  = np.arange( 0, g.nodes_per_layer, 1 )
         top   = np.arange( g.nodes_per_layer * (g.nlayers-1), g.num_nodes, 1 )
              
+        if g.is_flipped: top,base = base,top 
+            
         VisageDeckWritter.ensure_paths( options.path )
         fixitites_file_name = VisageDeckWritter.get_file_write_file_name( options.model_name, options.step, 'fix' )
         fixitites_file = os.path.join( options.path, fixitites_file_name )
@@ -229,27 +232,47 @@ class VisageDeckWritter:
         ele_shape = 13;
         offset = (1+g.element_count[0])*(1+g.element_count[1])
         
-        with open( ele_file_path, 'w') as f:
-            f.write("*TOPOLOGY,NOCOM\n")
+        if  g.is_flipped:
+            with open( ele_file_path, 'w') as f:
+                f.write("*TOPOLOGY,NOCOM\n")
+
+                for n in range(0, g.total_elements):
+
+                    d = deque( g.get_node_indices_for_element(n) )
+                    d.rotate( 4 )
+                    n1,n2,n3,n4,n5,n6,n7,n8 = list( d )
+
+                    ele_dvt = dvt[n]
+                    ele_activity = activity[n]
+                    ele_zero_vol = 0
+                    f.write( '{}\t{}\t{}    {}     {}     {}     \n'.format(1+n,ele_shape,1+n,ele_activity,ele_zero_vol,ele_dvt+1))
+                    f.write( '{}\t{}\t{}\t{}\t{}\t{}\t{}\t{} \n'.format(n1+1, n5+1, n6+1, n2+1,n4+1, n8+1, n7+1, n3+1))
+                    #f.write( '{}\t{}\t{}\t{} \n'.format( n4+1, n8+1, n7+1, n3+1))
+        else: 
             
-            for n in range(0, g.total_elements):
-                
-                #n1,n4,n3,n2 = g.get_node_indices_for_element(n)
-                #f.write( '{}\t{}\t{}\t{} '.format(n2 + 1, n1 + 1,n4 + 1,n3 + 1))
-                #f.write( '{}\t{}\t{}\t{} \n'.format(offset + n2 + 1,offset + n1 + 1,offset + n4 + 1,offset + n3 + 1))
-                
-                n1,n2,n3,n4 = g.get_node_indices_for_element(n)
-                n5,n6,n7,n8 = n1+offset,n2+offset,n3+offset,n4+offset
-                ele_dvt = dvt[n]
-                ele_activity = activity[n]
-                ele_zero_vol = 0
-                f.write( '{}\t{}\t{}    {}     {}     {}     \n'.format(1+n,ele_shape,1+n,ele_activity,ele_zero_vol,ele_dvt+1))
-                f.write( '{}\t{}\t{}\t{} '.format(n1+1, n5+1, n6+1, n2+1))
-                f.write( '{}\t{}\t{}\t{} \n'.format( n4+1, n8+1, n7+1, n3+1))
-                
-                
+            print('Assuming not flipped !!! ')
+            
+            with open( ele_file_path, 'w') as f:
+                f.write("*TOPOLOGY,NOCOM\n")
+
+                for n in range(0, g.total_elements):
+
+                    #n1,n2,n3,n4,n5,n6,n7,n8 =  g.get_node_indices_for_element(n)
+                    #ele_dvt = dvt[n]
+                    #ele_activity = activity[n]
+                    #ele_zero_vol = 0
+                    #f.write( '{}\t{}\t{}    {}     {}     {}     \n'.format(1+n,ele_shape,1+n,ele_activity,ele_zero_vol,ele_dvt+1))
+                    #f.write( '{}\t{}\t{}\t{}\t{}\t{}\t{}\t{} \n'.format( n1+1, n5+1, n6+1, n2+1, n3+1, n7+1, n8+1, n4+1))
+            
+            
+                    n1,n2,n3,n4,n5,n6,n7,n8 = g.get_node_indices_for_element(n)
+                    n5,n6,n7,n8 = n1+offset,n2+offset,n3+offset,n4+offset
+                    ele_dvt = dvt[n]
+                    ele_activity = activity[n]
+                    ele_zero_vol = 0
+                    f.write( '{}\t{}\t{}    {}     {}     {}     \n'.format(1+n,ele_shape,1+n,ele_activity,ele_zero_vol,ele_dvt+1))
+                    f.write( '{}\t{}\t{}\t{}\t{}\t{}\t{}\t{} \n'.format(n1+1, n5+1, n6+1, n2+1, n4+1, n8+1, n7+1, n3+1))
                     
-        
         return ele_file_name
     
     @staticmethod
@@ -364,5 +387,7 @@ class VisageDeckWritter:
             
         return mii_file_path 
 
-   
-   
+
+
+
+

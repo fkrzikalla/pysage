@@ -108,20 +108,25 @@ class StructuredBase:
     def get_node_indices_for_element(self, element: int)->list:
     
         '''
-        Returns the 4 node indices at the base of an element
+        Returns the 4 node indices at the base of an element and the 4 nodes at the top. 
+        Top and bottom here means the lowest indices elements in a normal grid where the 
+        surface 0 is the deepest, then surface 1 is on top, etc. In an inverted grid, that grows 
+        dowwards, the same pattern applies. The base is the lowest node indices and the top 
+        are the other 4 but the lowest node indices in this case at in fact the shallower nodes. 
         
         The order is counter-clock when looking at the base from the inside of the element 
       
        
         top of the element 
         
-             7     6 
-         4  / |    |
-           |  |    |
-           | 3|_ __| 2
+              
+            / |     |
+           |  |     |
+         ^ |  |_ __ | 
+         | |  /     /
          z | /     /
            |/     /  base of the element 
-           0-----1
+           -------
 
                z 
               |
@@ -129,24 +134,27 @@ class StructuredBase:
            x  /-----y
              /
          
+         top (z > z base ) 
+          
+             4 _ __ 7
+            /      /
+           /      /
+          5------6
+          
          base  
        
-            3 _ __ 2
+            0 _ __ 3
             /      /
            /      /
-          0------1
-          
-              top 
-          
-             7 _ __ 6
-            /      /
-           /      /
-          4------5
+          1------2
           
 
-        Note tha tthe other 4 a the top are the same but need to add nodes_per_layer  
+          
+
+        Note that the other 4 at the top are the same but need to add nodes_per_layer  
         
-        Tested 
+               
+        Tested for non-flipped (bottom=up grids ) 
         '''
     
         nodes = self.node_count
@@ -159,7 +167,24 @@ class StructuredBase:
         n3 = n2 + nodes[0]
         n4 = n1 + nodes[0]
 
-        return n1, n2, n3, n4; #should return n1,n2,n4,n3. It would be more consistent 
+        offset = nodes[0] * nodes[1]
+        
+        flipped = False#True  
+    
+        #if flipped == False: 
+        return n1, n2, n3, n4, n1 + offset, n2 + offset, n3+offset, n4+offset  
+        #else:
+        #    n5 = n1 + offset 
+        #    n6 = n2 + offset 
+        #    n7 = n3 + offset 
+        #    n8 = n4 + offset 
+        #    print('n1 n2 n3 n4 ', n1, n2, n3, n4, n5, n6 , n7 , n8  )
+            
+            
+        #    return n5, n6, n7, n8, n1, n2, n3, n4 
+            
+    
+    
     
     
     def get_node_indices( self, surface_index: int ):
