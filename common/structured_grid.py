@@ -4,7 +4,6 @@ import numpy as np
 from .coordinate_map import CoordinateMapping3D as CoordinateMapping3D 
 from .structured_base import StructuredBase as StructuredBase 
 
-
 class StructuredGrid( StructuredBase ):
     
     def __init__( self, ncols:int, nrows:int, nlayers:int, extent:'np.array2d', reference:'CoordinateMapping3D'=None ):
@@ -12,8 +11,15 @@ class StructuredGrid( StructuredBase ):
         super().__init__( ncols, nrows, nlayers, extent, reference )
         
         #list of numpy arrays 
-        self._zvalues = [np.zeros(self.nodes_per_layer) for n in range(0,self.nlayers)]
+        self._zvalues  = [np.zeros(self.nodes_per_layer) for n in range(0,self.nlayers)] #klayers
+        self._horizons = [np.zeros(self.nodes_per_layer) for n in range(0,self.nlayers)] #horizons 
         
+    def copy( self ):
+        s = StructuredGrid( self.ncols, self.nrows, self.nsurfaces, self.length, self.reference )
+        s._zvalues  = self._zvalues.copy()
+        s._horizons = self._horizons.copy()
+        return s
+          
     @property
     def is_flipped( self ):
         '''
@@ -164,4 +170,6 @@ class StructuredGrid( StructuredBase ):
                     node_connections[node1] = node2;
                     
         return element_pinched_count, node_connections
+    
+
     
