@@ -1,4 +1,5 @@
 
+import numpy as np 
 
 class Table: 
         
@@ -308,7 +309,6 @@ class Table:
         self._x = xvals
         self._y = yvals 
      
-        
 
 
 class LinearSplineFunction: 
@@ -377,6 +377,33 @@ class LinearSplineFunction:
     '''
  
          
+    def get_yo_and_slopes(self):
+        _x = self.x
+        _y = self.y 
+        
+        slopes = [ (_y[n+1]-_y[n])/(_x[n+1] - _x[n] ) for n in range(0,len(_x)-1) ] 
+        return _y[0], slopes 
+    
+    def set_yo_and_slopes(self, yo, xinput, slopes ):
+        
+        yy = [yo]
+        xx = [ xinput[0] ]
+        
+        for k in range(1, len(xinput)):
+            yval = yy[k-1] + slopes[k-1]*( xinput[k] - xinput[k-1] )
+            yy.append( yval )
+            xx.append( xinput[k] )
+             
+            
+            
+        self._y = yy 
+        self._x = xx 
+        
+        
+        return self.x, self.y 
+        
+        
+    
     def copy( self ):
         '''Returns a copy of the table.'''
         t = LinearSplineFunction(self._x.copy(), self._y.copy());
@@ -535,6 +562,4 @@ class LinearSplineFunction:
         self._x = xvals
         self._y = yvals 
      
-        
-        
         

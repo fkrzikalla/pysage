@@ -215,8 +215,10 @@ class LasParser( ):
                 else:
                     line = f.readline() 
         
-        return  WellData( data, header_data  )
-
+        well_data = WellData( data, header_data  )
+        well_data.insert(0, 'WELLNAME',header_data['WELL'] )
+        return well_data 
+        
     
     
     def load_las_files( files, FOLDER ):
@@ -226,7 +228,8 @@ class LasParser( ):
             PATH =  os.path.join( FOLDER, file )
 
             item = LasParser.parse_las( PATH )
-            item.insert(0, 'WellName', item.well_info['WELL'] )
+            
+            if 'WELLNAME' not in item: item.insert(0, 'WELLNAME', item.well_info['WELL'] )
             well_data_array.append( item )
 
 
@@ -246,6 +249,11 @@ class LasParser( ):
 
         #nice, lets now append pandas data frames vertically and sort by depth ? 
         well_data = pd.concat( well_data_array )
+        names= well_data['WELLNAME'].unique()
+        cat = { names[n]:n for n in range( 0, len(names))}
+        well_data['WELLID'] = well_data['WELLNAME'].map( cat ).astype(int)
+
+        
         return well_data 
     
    
